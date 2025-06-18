@@ -1,0 +1,111 @@
+<body
+  class="m-0 p-0 min-h-screen bg-cover bg-center"
+  style="background-image: url('assets/grocery-store.jpg')"
+>
+  <div class="min-h-screen bg-cover bg-center flex items-center justify-center">
+    <div class="bg-white/90 p-8 rounded-2xl shadow-lg max-w-lg w-full">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Grocery List
+      </h1>
+
+      <!-- Toggle Button -->
+      <div class="text-center mb-4">
+        <button
+          *ngIf="items.length !== 0"
+          (click)="toggleMode()"
+          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          {{
+            mode === "edit" ? "Switch to Shopping Mode" : "Back to Edit Mode"
+          }}
+        </button>
+      </div>
+
+      <!-- Edit Mode -->
+      <form
+        *ngIf="mode === 'edit'"
+        (submit)="addItem()"
+        class="flex mb-4 space-x-2"
+      >
+        <input
+          [(ngModel)]="newItemName"
+          name="newItemName"
+          placeholder="Item name"
+          class="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+          required
+        />
+        <input
+          type="number"
+          [(ngModel)]="newItemQuantity"
+          name="newItemQuantity"
+          placeholder="Qty"
+          class="w-20 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+        />
+        <button
+          type="submit"
+          [disabled]="!newItemName"
+          class="bg-green-600 text-white px-4 rounded hover:bg-green-700 disabled:opacity-50"
+        >
+          {{ editIndex !== null ? "Update" : "Add" }}
+        </button>
+      </form>
+
+      <!-- Edit Mode Item List -->
+      <ul *ngIf="mode === 'edit'" class="space-y-2">
+        <li
+          *ngFor="let item of items; let i = index"
+          class="flex justify-between items-center bg-white rounded-lg p-3 shadow"
+        >
+          <span class="text-gray-700"
+            >{{ item.name }} ({{ item.quantity }})</span
+          >
+          <div class="space-x-2">
+            <button
+              (click)="editItem(i)"
+              class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500"
+            >
+              Edit
+            </button>
+            <button
+              (click)="removeItem(i)"
+              class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <div *ngIf="mode === 'shopping'">
+        <!-- Shopping Mode -->
+        <ul class="space-y-3">
+          <li
+            *ngFor="let item of items; let i = index"
+            class="flex items-center justify-between bg-white p-3 rounded shadow"
+          >
+            <div class="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                [(ngModel)]="item.done"
+                (change)="toggleItemDone(item)"
+                class="accent-green-600"
+              />
+              <span [ngClass]="{ 'line-through text-gray-400': item.done }">
+                {{ item.name }} ({{ item.quantity }})
+              </span>
+            </div>
+          </li>
+        </ul>
+        <div class="text-center mt-6">
+          <button
+            [disabled]="isShoppingDoneDisabled"
+            (click)="shoppingDone()"
+            class="bg-green-500 hover:bg-green-700 disabled:opacity-50 text-white font-medium px-5 py-2 rounded-lg shadow-sm transition duration-200"
+          >
+            🛒 Shopping Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
