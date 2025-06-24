@@ -1,6 +1,6 @@
 # HouseApp
 
-This project was developed using Angular 19 to help household members keep track of tasks that need to be done at home and work. It is managed through a web application deployed on Firebase Hosting, with data stored and synced using Firebase Realtime Database.
+This project was developed using Angular 19 and styled with Tailwind CSS to help household members keep track of tasks and necessities at home. It is managed through a web application deployed on Firebase Hosting, with data stored and synced using Firebase Realtime Database.
 
 ## 🚀 Live Demo
 
