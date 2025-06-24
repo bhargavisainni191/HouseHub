@@ -1,9 +1,5 @@
 {
   "projects": {
-    "default": "groceriesangular",
-    "v2": "redcurrant-drive",
-    "release": "groceriesangular"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "groceriesangular"
+  }
 }

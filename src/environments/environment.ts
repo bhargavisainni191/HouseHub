@@ -4,7 +4,7 @@ export const environment = {
     authDomain: 'groceriesangular.firebaseapp.com',
     databaseURL: 'https://groceriesangular-default-rtdb.firebaseio.com',
     projectId: 'groceriesangular',
-    storageBucket: 'groceriesangular.firebasestorage.app',
+    storageBucket: 'groceriesangular.appspot.com',
     messagingSenderId: '241191394843',
     appId: '1:241191394843:web:ef272fb934748968eba2be',
     measurementId: 'G-WK1X3M1ZCH',
